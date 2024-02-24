@@ -37,16 +37,17 @@ class MovieViewModel: ObservableObject {
         if let currentMovie = getCurrentMovie(), title == "" {
             movie = currentMovie
         } else if title != "" {
+            let titleEncoded: String = title.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
             networkAvailability.startListening { [weak self] status in
                 switch status {
                 case .notReachable:
-                    
+                    self?.isError = true
                 case .reachable(.ethernetOrWiFi):
-                    self?.fetchMovie(title: "")
+                    self?.fetchMovie(title: titleEncoded)
                 case .reachable(.cellular):
-                    self?.fetchMovie(title: "galaxy")
+                    self?.fetchMovie(title: titleEncoded)
                 case .unknown:
-                    self?.fetchMovie(title: "galaxy")
+                    self?.fetchMovie(title: titleEncoded)
                 }
             }
         }
@@ -69,16 +70,18 @@ class MovieViewModel: ObservableObject {
                 ws.isLoading = false
                 ws.movie = response
 
-                // ws.saveStorage(latest: response)
+                if response.title != "" {
+                    ws.saveStorage(movie: response)
+                }
             }.catch { [weak self] error in
                 guard let ws = self else { return }
                 ws.isLoading = false
                 ws.isError = true
-//                if let latestJson = ws.getLatestLocal() {
-//                    ws.latest = latestJson
-//                    ws.rates = latestJson.rates
-//                }
             }
+    }
+    
+    private func saveStorage(movie: Movie) {
+        userDefaults.setValue(movie.toJSON(), forKey: Constant.MOVIE)
     }
     
     /*func getMovie() {
