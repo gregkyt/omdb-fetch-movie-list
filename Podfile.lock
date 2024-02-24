@@ -1,0 +1,44 @@
+PODS:
+  - Alamofire (5.8.1)
+  - Kingfisher (7.10.1)
+  - Mockit (1.5.0)
+  - Nimble (13.0.0)
+  - ObjectMapper (4.2.0)
+  - PromisesObjC (2.3.1)
+  - PromisesSwift (2.3.1):
+    - PromisesObjC (= 2.3.1)
+  - SkeletonUI (2.0.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - Kingfisher
+  - Mockit
+  - Nimble
+  - ObjectMapper
+  - PromisesSwift
+  - SkeletonUI
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Kingfisher
+    - Mockit
+    - Nimble
+    - ObjectMapper
+    - PromisesObjC
+    - PromisesSwift
+    - SkeletonUI
+
+SPEC CHECKSUMS:
+  Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
+  Kingfisher: bc5abe80a8e0144537ef1dd5a0b2621b04f7f439
+  Mockit: 09492d654a2945096603d76ea77b131bdcfb2233
+  Nimble: 97d90931cca412a23224ff29e258809f75c258f7
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
+  PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
+  SkeletonUI: 8d622a4dd755650bd5d50eed1e4180fa146c5d6b
+
+PODFILE CHECKSUM: e48bdedff3b1b306957562902d382cf4e62ad106
+
+COCOAPODS: 1.11.2
