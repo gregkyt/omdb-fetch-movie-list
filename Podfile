@@ -11,7 +11,6 @@ target 'MovieAPI' do
   pod 'ObjectMapper'
   pod 'PromisesSwift'
   pod 'Kingfisher'
-  pod 'SkeletonUI'
 
   target 'MovieAPITests' do
     inherit! :search_paths

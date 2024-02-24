@@ -39,6 +39,7 @@ class MovieViewModel: ObservableObject {
         } else if title != "" {
             let titleEncoded: String = title.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
             networkAvailability.startListening { [weak self] status in
+                print(status)
                 switch status {
                 case .notReachable:
                     self?.isError = true
@@ -68,6 +69,7 @@ class MovieViewModel: ObservableObject {
                 guard let ws = self else { return }
                 print(response.toJSON())
                 ws.isLoading = false
+                ws.isError = false
                 ws.movie = response
 
                 if response.title != "" {

@@ -7,7 +7,6 @@ PODS:
   - PromisesObjC (2.3.1)
   - PromisesSwift (2.3.1):
     - PromisesObjC (= 2.3.1)
-  - SkeletonUI (2.0.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -16,7 +15,6 @@ DEPENDENCIES:
   - Nimble
   - ObjectMapper
   - PromisesSwift
-  - SkeletonUI
 
 SPEC REPOS:
   trunk:
@@ -27,7 +25,6 @@ SPEC REPOS:
     - ObjectMapper
     - PromisesObjC
     - PromisesSwift
-    - SkeletonUI
 
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
@@ -37,8 +34,7 @@ SPEC CHECKSUMS:
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
-  SkeletonUI: 8d622a4dd755650bd5d50eed1e4180fa146c5d6b
 
-PODFILE CHECKSUM: e48bdedff3b1b306957562902d382cf4e62ad106
+PODFILE CHECKSUM: 2f06a98728bd7c5f3f2bd929887e87dc96191511
 
 COCOAPODS: 1.11.2

@@ -35,6 +35,7 @@
 		D267BE842B88F3BA0010DF73 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D267BE832B88F3BA0010DF73 /* NetworkUtil.swift */; };
 		D267BE862B88FE6F0010DF73 /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D267BE852B88FE6F0010DF73 /* MovieView.swift */; };
 		D267BE8A2B89BDE40010DF73 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D267BE892B89BDE40010DF73 /* RatingView.swift */; };
+		D267BE8C2B89D41A0010DF73 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D267BE8B2B89D41A0010DF73 /* ErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		D267BE832B88F3BA0010DF73 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		D267BE852B88FE6F0010DF73 /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
 		D267BE892B89BDE40010DF73 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		D267BE8B2B89D41A0010DF73 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		D57FA263887F3E0346663849 /* Pods-MovieAPITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieAPITests.release.xcconfig"; path = "Target Support Files/Pods-MovieAPITests/Pods-MovieAPITests.release.xcconfig"; sourceTree = "<group>"; };
 		F28331C8EEA6D7AE173FBADE /* Pods_MovieAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -329,6 +331,7 @@
 				D267BE6D2B88E93D0010DF73 /* MovieViewModel.swift */,
 				D267BE852B88FE6F0010DF73 /* MovieView.swift */,
 				D267BE892B89BDE40010DF73 /* RatingView.swift */,
+				D267BE8B2B89D41A0010DF73 /* ErrorView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				D267BE722B88E93D0010DF73 /* MovieDataSource.swift in Sources */,
 				D267BE772B88E93D0010DF73 /* MovieApiInjector.swift in Sources */,
 				D267BE6F2B88E93D0010DF73 /* Movie.swift in Sources */,
+				D267BE8C2B89D41A0010DF73 /* ErrorView.swift in Sources */,
 				D267BE762B88E93D0010DF73 /* MovieInjector.swift in Sources */,
 				D267BE8A2B89BDE40010DF73 /* RatingView.swift in Sources */,
 				D267BE6E2B88E93D0010DF73 /* MovieRepository.swift in Sources */,

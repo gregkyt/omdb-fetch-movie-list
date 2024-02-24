@@ -24,19 +24,26 @@ struct MovieView: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(.gray)
                     )
-                if viewModel.movie.title == "" {
-                    Text("No Data")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.title2)
-                        .fontWeight(.semibold)
+                if viewModel.isError {
+                    ErrorView(onTapButton: {
+                        viewModel.getMovie(title: viewModel.debounceTitle)
+                    })
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 } else {
-                    Text(viewModel.movie.title)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .skeleton(with: viewModel.isLoading)
-                    header
-                    detail
+                    if viewModel.movie.title == "" {
+                        Text("No Data")
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                    } else {
+                        Text(viewModel.movie.title)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                            .redacted(reason: viewModel.isLoading ? .placeholder : [])
+                        header
+                        detail
+                    }
                 }
             }
             .padding(16)
@@ -59,7 +66,7 @@ extension MovieView {
                 .cornerRadius(20)
                 .clipped()
                 .frame(maxWidth: .infinity)
-                .skeleton(with: viewModel.isLoading)
+                .redacted(reason: viewModel.isLoading ? .placeholder : [])
             content
                 .frame(maxWidth: .infinity)
         }
@@ -76,7 +83,7 @@ extension MovieView {
                 Text(viewModel.movie.released)
                     .font(.body)
             }
-            .skeleton(with: viewModel.isLoading)
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
             HStack(alignment: .top, spacing: 8) {
                 Text("Genre")
                     .font(.body)
@@ -84,7 +91,7 @@ extension MovieView {
                 Text(viewModel.movie.genre)
                     .font(.body)
             }
-            .skeleton(with: viewModel.isLoading)
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
             HStack(alignment: .top, spacing: 8) {
                 Text("Type")
                     .font(.body)
@@ -92,7 +99,7 @@ extension MovieView {
                 Text(viewModel.movie.type.capitalized)
                     .font(.body)
             }
-            .skeleton(with: viewModel.isLoading)
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
             HStack(alignment: .top, spacing: 8) {
                 Text("Runtime")
                     .font(.body)
@@ -100,7 +107,7 @@ extension MovieView {
                 Text(viewModel.movie.runtime)
                     .font(.body)
             }
-            .skeleton(with: viewModel.isLoading)
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
             HStack(alignment: .top, spacing: 8) {
                 Text("Language")
                     .font(.body)
@@ -108,7 +115,7 @@ extension MovieView {
                 Text(viewModel.movie.language)
                     .font(.body)
             }
-            .skeleton(with: viewModel.isLoading)
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
             HStack(alignment: .top, spacing: 8) {
                 Text("Rated")
                     .font(.body)
@@ -116,7 +123,7 @@ extension MovieView {
                 Text(viewModel.movie.rated)
                     .font(.body)
             }
-            .skeleton(with: viewModel.isLoading)
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
             HStack(alignment: .top, spacing: 8) {
                 Text("Country")
                     .font(.body)
@@ -124,18 +131,20 @@ extension MovieView {
                 Text(viewModel.movie.country)
                     .font(.body)
             }
-            .skeleton(with: viewModel.isLoading)
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
         }
     }
 }
 
 extension MovieView {
     var detail: some View {
-        VStack(spacing: 16) {
+        VStack(alignment: .leading, spacing: 16) {
             imdb
             castAndCrew
             plot
-            rating
+            if !viewModel.movie.ratings.isEmpty {
+                rating
+            }
         }
     }
 }
@@ -157,7 +166,7 @@ extension MovieView {
                 Text(viewModel.movie.imdbID)
                     .font(.body)
             }
-            .skeleton(with: viewModel.isLoading)
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
             HStack(alignment: .top, spacing: 8) {
                 Text("Rating")
                     .font(.body)
@@ -165,7 +174,7 @@ extension MovieView {
                 Text(viewModel.movie.imdbRating)
                     .font(.body)
             }
-            .skeleton(with: viewModel.isLoading)
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
             HStack(alignment: .top, spacing: 8) {
                 Text("Votes")
                     .font(.body)
@@ -173,7 +182,7 @@ extension MovieView {
                 Text(viewModel.movie.imdbVotes)
                     .font(.body)
             }
-            .skeleton(with: viewModel.isLoading)
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
         }
     }
     
@@ -194,7 +203,7 @@ extension MovieView {
                     .font(.body)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .skeleton(with: viewModel.isLoading)
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
             HStack(alignment: .top, spacing: 8) {
                 Text("Actors")
                     .font(.body)
@@ -203,7 +212,7 @@ extension MovieView {
                     .font(.body)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .skeleton(with: viewModel.isLoading)
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
         }
     }
     
@@ -219,7 +228,7 @@ extension MovieView {
             Text(viewModel.movie.plot)
                 .font(.body)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .skeleton(with: viewModel.isLoading)
+                .redacted(reason: viewModel.isLoading ? .placeholder : [])
         }
     }
     
@@ -234,14 +243,14 @@ extension MovieView {
                 .frame(maxWidth: .infinity)
             ForEach(viewModel.movie.ratings.sorted(by: { $0.source < $1.source }), id: \.source) { item in
                 RatingView(source: item.source, value: item.value)
-                    .skeleton(with: viewModel.isLoading)
             }
         }
+        .redacted(reason: viewModel.isLoading ? .placeholder : [])
     }
 }
 
-struct MovieView_Previews: PreviewProvider {
-    static var previews: some View {
-        MovieView()
-    }
-}
+//struct MovieView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MovieView()
+//    }
+//}
