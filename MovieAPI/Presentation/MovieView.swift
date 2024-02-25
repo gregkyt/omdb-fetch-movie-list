@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Kingfisher
-import SkeletonUI
 
 struct MovieView: View {
     @StateObject var viewModel = MovieViewModel()

@@ -34,5 +34,29 @@ struct MovieRepositoryImpl: MovieRepository {
             }
         }
     }
+    
+    func getMovieList(search: String, page: Int) -> Promise<[Movie]> {
+        return Promise<[Movie]>(on: .global(qos: .utility)) { fullfilled, reject in
+            remote.getMovieList(search: search, page: page) { result in
+                switch (result) {
+                case .success(let data):
+                    guard let data = data else { return }
+                    if let searchList = data["Search"] as? [[String: Any]] {
+                        var movieList: [Movie] = []
+                        for list in searchList {
+                            guard let json = Movie(JSON: list) else { return }
+                            movieList.append(json)
+                        }
+                        fullfilled(movieList)
+                    } else {
+                        let error = NSError(domain: "Error", code: 500, userInfo: data)
+                        reject(error as Error);
+                    }
+                case .failure(let error):
+                    reject(error);
+                }
+            }
+        }
+    }
 }
 

@@ -10,4 +10,5 @@ import Promises
 
 protocol MovieRepository {
     func getMovie(title: String) -> Promise<Movie>
+    func getMovieList(search: String, page: Int) -> Promise<[Movie]>
 }

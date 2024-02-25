@@ -9,5 +9,6 @@ import Foundation
 
 struct Constant {
     static let MOVIE = "movie"
+    static let MOVIE_LIST = "movie_list"
     static let TITLE = "title"
 }

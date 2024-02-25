@@ -29,4 +29,8 @@ class MovieInjector {
     lazy var getMovieUseCase: GetMovieUseCase = {
         GetMovieUseCaseImpl(repository: MovieInjector.shared.movieRepository)
     }()
+    
+    lazy var getMovieListUseCase: GetMovieListUseCase = {
+        GetMovieListUseCaseImpl(repository: MovieInjector.shared.movieRepository)
+    }()
 }

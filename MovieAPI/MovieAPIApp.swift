@@ -12,7 +12,8 @@ struct MovieAPIApp: App {
     var body: some Scene {
         WindowGroup {
             // ContentView()
-            MovieView().environmentObject(DependencyContainer())
+            // MovieView().environmentObject(DependencyContainer())
+            MovieListView().environmentObject(DependencyContainer())
         }
     }
 }
