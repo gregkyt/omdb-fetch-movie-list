@@ -39,8 +39,8 @@ struct ItemMovieView: View {
     }
 }
 
-//struct ItemMovieView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ItemMovieView(imageUrl: "https://m.media-amazon.com/images/M/MV5BMTc5MTE4MzY2N15BMl5BanBnXkFtZTcwNjMwNDc3Ng@@._V1_SX300.jpg", title: "Man on a Ledge", year: "2002", isLoading: false)
-//    }
-//}
+struct ItemMovieView_Previews: PreviewProvider {
+    static var previews: some View {
+        ItemMovieView(imageUrl: "https://m.media-amazon.com/images/M/MV5BMTc5MTE4MzY2N15BMl5BanBnXkFtZTcwNjMwNDc3Ng@@._V1_SX300.jpg", title: "Man on a Ledge", year: "2002", isLoading: true)
+    }
+}

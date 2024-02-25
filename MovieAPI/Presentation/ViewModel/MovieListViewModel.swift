@@ -21,7 +21,8 @@ class MovieListViewModel: ObservableObject {
     @Published var title: String = ""
     @Published var debounceTitle: String = ""
     
-    var page = 1
+    var page: Int = 1
+    var errorMessage: String = ""
     
     init() {
         setupTitleDebounce()
@@ -36,6 +37,7 @@ class MovieListViewModel: ObservableObject {
     
     func getMovieList(search: String = "", isRefresh: Bool = false) {
         if isRefresh {
+            movieList = []
             page = 1
         }
         
@@ -100,7 +102,10 @@ class MovieListViewModel: ObservableObject {
                 guard let ws = self else { return }
                 ws.isLoading = false
                 ws.isError = true
-                print((error as? NSError)?.userInfo)
+                
+                let errUserInfo = (error as NSError).userInfo
+                guard let errStr = errUserInfo["Error"] as? String else { return }
+                ws.errorMessage = errStr
             }
     }
     
