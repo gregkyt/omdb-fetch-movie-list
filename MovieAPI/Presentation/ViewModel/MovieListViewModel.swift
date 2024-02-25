@@ -9,9 +9,9 @@ import Foundation
 
 @MainActor
 class MovieListViewModel: ObservableObject {
-    private var getMovieListUseCase = MovieInjector.shared.getMovieListUseCase
-    private var userDefaults = MovieApiInjector.shared.userDefaults
-    private var networkAvailability = MovieApiInjector.shared.networkAvailabilityChecker
+    var getMovieListUseCase = MovieInjector.shared.getMovieListUseCase
+    var userDefaults = MovieApiInjector.shared.userDefaults
+    var networkAvailability = MovieApiInjector.shared.networkAvailabilityChecker
     
     @Published var isLoading: Bool = false
     @Published var isError: Bool = false
@@ -41,10 +41,10 @@ class MovieListViewModel: ObservableObject {
             page = 1
         }
         
-        if let currentMovies = getCurrentMovies(), title == "" {
+        if let currentMovies = getCurrentMovies(), search == "" {
             movieList = currentMovies
         } else if search != "" {
-            let searchEncoded: String = title.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+            let searchEncoded: String = search.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
             networkAvailability.startListening { [weak self] status in
                 switch status {
                 case .notReachable:
@@ -68,7 +68,7 @@ class MovieListViewModel: ObservableObject {
         }
     }
     
-    private func getCurrentMovies() -> [Movie]? {
+    func getCurrentMovies() -> [Movie]? {
         guard let moviesCache = userDefaults.object(forKey: Constant.MOVIE_LIST) as? [[String: Any]]
             else { return nil }
         var list: [Movie] = []
@@ -80,7 +80,7 @@ class MovieListViewModel: ObservableObject {
         return list
     }
     
-    private func fetchMovieList(search: String) {
+    func fetchMovieList(search: String) {
         isLoading = true
         getMovieListUseCase.execute(search: search, page: page)
             .then { [weak self] response in
@@ -109,7 +109,7 @@ class MovieListViewModel: ObservableObject {
             }
     }
     
-    private func saveStorage(movies: [Movie]) {
+    func saveStorage(movies: [Movie]) {
         userDefaults.setValue(movies.toJSON(), forKey: Constant.MOVIE_LIST)
     }
 }

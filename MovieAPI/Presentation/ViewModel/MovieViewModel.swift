@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 class MovieViewModel: ObservableObject {
-    private var getMovieUseCase = MovieInjector.shared.getMovieUseCase
+    var getMovieUseCase = MovieInjector.shared.getMovieUseCase
     private var userDefaults = MovieApiInjector.shared.userDefaults
     private var networkAvailability = MovieApiInjector.shared.networkAvailabilityChecker
     
